@@ -1,6 +1,6 @@
 # [Project Name] - Transforming Child Health Data Collection
 
-Welcome to the [Project Name] GitHub repository! [Project Name] is an AI-powered platform designed to streamline the collection, analysis, and visualization of health data for children under the age of 5. This repository contains the source code, development history, and supporting materials for the [Project Name] platform.
+Welcome to the [Project Name] GitHub repository! [Project Name] is digital platform designed to enhance maternal and child health monitoring in rural areas by leveraging AI and GPS technology. This repository contains the source code, development history, and supporting materials for the [Project Name] platform.
 
 ## Structure
 
