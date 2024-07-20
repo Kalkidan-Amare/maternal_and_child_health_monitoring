@@ -3,14 +3,17 @@ import FormWrapper from "./ui/FormWrapper";
 import { useMutation } from "react-query";
 import { postData } from "../../hooks/useDjango";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BasicInfoForm = () => {
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const mutation = useMutation(
     (newComplaint) => postData("basicinfos/basic_information/", newComplaint),
     {
       onSuccess: (data) => {
         console.log("Form submission successful", data);
+        navigate(`/surveyor/basic-info-submitted/${data.data.id}`)
         
       },
       onError: (error) => {
@@ -26,7 +29,6 @@ const BasicInfoForm = () => {
     setError(null); 
     const modifiedData = {
       ...data,
-      basic_information: {
         country: data.country,
         region: data.region,
         zone: data.zone,
@@ -36,9 +38,8 @@ const BasicInfoForm = () => {
         house_number: data.house_number,
         head_of_household_name: data.head_of_household_name,
         head_of_household_phone_number: data.head_of_household_phone_number,
+        surveyor: "1",
         location: data.location,
-        serveyor: 1,
-      },
     };
     mutation.mutate(modifiedData);
     console.log("form submitted", modifiedData);

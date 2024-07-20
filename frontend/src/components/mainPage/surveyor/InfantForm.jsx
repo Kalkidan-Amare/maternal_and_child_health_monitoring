@@ -1,73 +1,123 @@
-import { useParams } from "react-router-dom"
-
-
-import FormWrapper from "./ui/FormWrapper"
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import FormWrapper from "./ui/FormWrapper";
+import { useMutation } from "react-query";
+import { postData } from "../../hooks/useDjango";
+import { useState } from "react";
 
 const InfantForm = () => {
-  const { register, handleSubmit } = useForm()
-  const onSubmit = (data) => {
-    console.log('form submitted', data)
-  }
+    const [error, setError] = useState(null);
+    const mutation = useMutation(
+        (newComplaint) => postData('children/child_follow_up/', newComplaint),
+        {
+            onSuccess: (data) => {
+                console.log('Form submission successful', data);
+                // Add any action you want to perform on success here
+            },
+            onError: (error) => {
+                console.error('Form submission failed', error);
+                setError(error);
+                // Add any action you want to perform on failure here
+            },
+        }
+    );
 
-  const params = useParams()
-  console.log(params)
-  return (
-    <FormWrapper title='Infant Child Health Form'>
-      {(location, styles) => (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label htmlFor="checkup-date" className={styles.labelClass}>Checkup Date</label>
-            <input type="date" id="checkup-date" name="checkup-date" required className={styles.inputClass} {...register('checkup_date')} />
-          </div>
+    const { register, handleSubmit } = useForm();
+    const onSubmit = (data) => {
+        setError(null); // Reset error state before new submission
+        const modifiedData = {
+            ...data,
+            child_information: 1,
+            surveyor: 1,
+        };
+        mutation.mutate(modifiedData);
+        console.log('form submitted', modifiedData);
+    };
 
-          <div>
-            <label htmlFor="weight" className={styles.labelClass}>Weight (kg)</label>
-            <input type="number" id="weight" name="weight" step="0.1" required className={styles.inputClass} {...register('weight')} />
-          </div>
+    return (
+        <FormWrapper title="Child Follow up Form">
+            {(location, styles) => (
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <div>
+                        <label htmlFor="weight" className={styles.labelClass}>Weight (kg)</label>
+                        <input type="number" id="weight" name="weight" step="0.1" required className={styles.inputClass}
+                            {...register('weight')} />
+                    </div>
 
-          <div>
-            <label htmlFor="height" className={styles.labelClass}>Height (cm)</label>
-            <input type="number" id="height" name="height" step="0.1" required className={styles.inputClass} {...register('height')} />
-          </div>
+                    <div>
+                        <label htmlFor="muac" className={styles.labelClass}>MUAC (cm)</label>
+                        <input type="number" id="muac" name="muac" step="0.1" required className={styles.inputClass}
+                            {...register('muac')} />
+                    </div>
 
-          <div>
-            <label htmlFor="head-circumference" className={styles.labelClass}>Head Circumference (cm)</label>
-            <input type="number" id="head-circumference" name="head-circumference" step="0.1" required className={styles.inputClass} {...register('head_circumference')} />
-          </div>
+                    <div>
+                        <label htmlFor="vitamins" className={styles.labelClass}>Vitamins</label>
+                        <input type="checkbox" id="vitamins" name="vitamins" className={styles.inputClass}
+                            {...register('vitamins')} />
+                    </div>
 
-          <div>
-            <label htmlFor="developmental-milestone" className={styles.labelClass}>Developmental Milestone</label>
-            <textarea id="developmental-milestone" name="developmental-milestone" rows="4" cols="50" required className={styles.inputClass} {...register('developmental_milestones')} />
-          </div>
+                    <div>
+                        <label htmlFor="deworming" className={styles.labelClass}>Deworming</label>
+                        <input type="checkbox" id="deworming" name="deworming" className={styles.inputClass}
+                            {...register('deworming')} />
+                    </div>
 
-          <div>
-            <label htmlFor="immunization" className={styles.labelClass}>Immunization</label>
-            <textarea id="immunization" name="immunization" rows="4" cols="50" required className={styles.inputClass} {...register('immunizations')} />
-          </div>
+                    <div>
+                        <label htmlFor="polio" className={styles.labelClass}>Polio</label>
+                        <input type="checkbox" id="polio" name="polio" className={styles.inputClass}
+                            {...register('polio')} />
+                    </div>
 
-          <div>
-            <label htmlFor="nutrition" className={styles.labelClass}>Nutrition</label>
-            <textarea id="nutrition" name="nutrition" rows="4" cols="50" required className={styles.inputClass} {...register('nutrition')} />
-          </div>
+                    <div>
+                        <label htmlFor="pcv" className={styles.labelClass}>PCV</label>
+                        <input type="checkbox" id="pcv" name="pcv" className={styles.inputClass}
+                            {...register('pcv')} />
+                    </div>
 
-          <div>
-            <label htmlFor="child" className={styles.labelClass}>Child's Name</label>
-            <input defaultValue={params.name} readOnly type="text" id="child" name="child" required className={styles.inputClass} {...register('child')} />
-          </div>
+                    <div>
+                        <label htmlFor="rotavirus" className={styles.labelClass}>Rotavirus</label>
+                        <input type="checkbox" id="rotavirus" name="rotavirus" className={styles.inputClass}
+                            {...register('rotavirus')} />
+                    </div>
 
-          <div>
-            <label htmlFor="location" className={styles.labelClass}>Location</label>
-            <input type="text" id="location" name="location" readOnly required defaultValue={location} className={styles.inputClass}
-              {...register('location')} />
-          </div>
+                    <div>
+                        <label htmlFor="diphtheria" className={styles.labelClass}>Diphtheria</label>
+                        <input type="checkbox" id="diphtheria" name="diphtheria" className={styles.inputClass}
+                            {...register('diphtheria')} />
+                    </div>
 
-          <div>
-            <input type="submit" value="Submit" className={styles.submitClass} />
-          </div>
-        </form>)}
-    </FormWrapper>
+                    <div>
+                        <label htmlFor="tetanus" className={styles.labelClass}>Tetanus</label>
+                        <input type="checkbox" id="tetanus" name="tetanus" className={styles.inputClass}
+                            {...register('tetanus')} />
+                    </div>
 
-  )
-}
-export default InfantForm
+                    <div>
+                        <label htmlFor="measles" className={styles.labelClass}>Measles</label>
+                        <input type="checkbox" id="measles" name="measles" className={styles.inputClass}
+                            {...register('measles')} />
+                    </div>
+
+                    <div>
+                        <label htmlFor="trachoma_screening" className={styles.labelClass}>Trachoma Screening</label>
+                        <input type="checkbox" id="trachoma_screening" name="trachoma_screening" className={styles.inputClass}
+                            {...register('trachoma_screening')} />
+                    </div>
+
+                    <div>
+                        <label htmlFor="location" className={styles.labelClass}>Location</label>
+                        <input type="text" id="location" name="location" readOnly required defaultValue={location} className={styles.inputClass}
+                            {...register('location')} />
+                    </div>
+
+                    <div>
+                        <input type="submit" value="Submit" className={styles.submitClass} />
+                    </div>
+
+                    {error && <div className="error-message">Submission failed: {error.message}</div>}
+                </form>
+            )}
+        </FormWrapper>
+    );
+};
+
+export default InfantForm;

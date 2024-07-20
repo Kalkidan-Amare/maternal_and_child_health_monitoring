@@ -2,14 +2,17 @@ import { useForm } from "react-hook-form";
 import FormWrapper from "../ui/FormWrapper";
 import { useMutation } from "react-query";
 import { postData } from "../../../hooks/useDjango";
+import { useNavigate } from "react-router-dom";
 
-const ChildInfoForm = () => {
+const ChildInfoForm = ({id}) => {
+    const navigate = useNavigate();
   const mutation = useMutation(
     (newComplaint) => postData("children/child_information/", newComplaint),
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         // Invalidate and refetch
         console.log("done");
+        navigate(`/surveyor/basic-info-submitted/${id}`)
       },
     }
   );
