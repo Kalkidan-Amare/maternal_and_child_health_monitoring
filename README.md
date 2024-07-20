@@ -35,7 +35,7 @@ To get started with the Ade platform, follow the instructions below:
 1. Clone the repository:
     ```bash
     git clone https://github.com/Kalkidan-Amare/maternal_and_child_health_monitoring.git
-    cd projectname
+    cd maternal_and_child_health_monitoring
     ```
 
 2. Set up the backend:
