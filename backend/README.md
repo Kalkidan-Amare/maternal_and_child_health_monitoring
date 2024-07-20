@@ -1,31 +1,44 @@
-<h1 align="center">Project Title</h1>
+<h2>On Windows</h2>
 
-<p align="center">
-  <b>On Windows</b><br>
-  <code>python -m venv venv</code><br>
-  <code>venv\Scripts\activate</code><br>
-</p>
+<pre>
+<code>
+python -m venv venv
+venv\Scripts\activate
+</code>
+</pre>
 
-<p align="center">
-  <b>On macOS/Linux</b><br>
-  <code>python3 -m venv venv</code><br>
-  <code>source venv/bin/activate</code><br>
-</p>
+<h2>On macOS/Linux</h2>
 
-<p align="center">
-  <b>Install Requirements</b><br>
-  <code>pip install -r requirements.txt</code><br>
-</p>
+<pre>
+<code>
+python3 -m venv venv
+source venv/bin/activate
+</code>
+</pre>
 
-<p align="center">
-  <b>Run Migrations</b><br>
-  <code>python manage.py makemigrations basicinfos</code><br>
-  <code>python manage.py makemigrations mothers</code><br>
-  <code>python manage.py makemigrations children</code><br>
-  <code>python manage.py migrate</code><br>
-</p>
+<h2>Install Requirements</h2>
 
-<p align="center">
-  <b>Run Server</b><br>
-  <code>python manage.py runserver</code><br>
-</p>
+<pre>
+<code>
+pip install -r requirements.txt
+</code>
+</pre>
+
+<h2>Run Migrations</h2>
+
+<pre>
+<code>
+python manage.py makemigrations basicinfos
+python manage.py makemigrations mothers
+python manage.py makemigrations children
+python manage.py migrate
+</code>
+</pre>
+
+<h2>Run Server</h2>
+
+<pre>
+<code>
+python manage.py runserver
+</code>
+</pre>
