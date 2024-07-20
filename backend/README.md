@@ -42,3 +42,11 @@ python manage.py migrate
 python manage.py runserver
 </code>
 </pre>
+
+<h2>API Endpoints</h2>
+
+<p>
+  <a href="http://127.0.0.1:8000/basicinfos">Basic Information Endpoint</a><br>
+  <a href="http://127.0.0.1:8000/children">Children Endpoint</a><br>
+  <a href="http://127.0.0.1:8000/mothers">Mothers Endpoint</a><br>
+</p>
