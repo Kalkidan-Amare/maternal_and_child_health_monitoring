@@ -17,7 +17,7 @@ const ChildList=()=>{
             {mothers.map((val) => (
               <NavLink
                 key={val.id}
-                to={`/infant-form/${val.id}/${val.name}`}
+                to={`/surveyor/infant-form/${val.id}/${val.name}`}
                 className={({ isActive }) =>
                   `block bg-white p-4 rounded-lg shadow-md hover:bg-gray-50 transition duration-300 ease-in-out ${isActive ? 'bg-emerald-100 text-emerald-800' : 'text-gray-800'}`
                 }

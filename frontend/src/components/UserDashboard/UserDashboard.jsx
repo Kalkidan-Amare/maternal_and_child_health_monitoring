@@ -4,15 +4,13 @@ import DashBoardRouting from "./DashBoardRouting";
 import { NavLink } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
 
-
 const UserDashboard = () => {
-    const [clicked, setClicked] = useState("");
+  const [clicked, setClicked] = useState("");
 
-    const handleNavClick = (nav) =>{
-        setClicked(nav);
-    }
+  const handleNavClick = (nav) => {
+    setClicked(nav);
+  };
 
-    
   return (
     <div>
       <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 sm:py-4 lg:ps-64">
@@ -26,7 +24,7 @@ const UserDashboard = () => {
               href="/"
               aria-label="Preline"
             >
-              <p className="text-xl font-medium"> LittleLives</p>
+              <p className="text-xl font-medium"> Ade</p>
             </a>
           </div>
 
@@ -284,16 +282,7 @@ const UserDashboard = () => {
 
       <div
         id="application-sidebar"
-        class="hs-overlay [--auto-close:lg]
-  hs-overlay-open:translate-x-0
-  -translate-x-full transition-all duration-300 transform
-  w-[260px]
-  hidden
-  fixed inset-y-0 start-0 z-[60]
-  bg-white border-e border-gray-200
-  lg:block lg:translate-x-0 lg:end-auto lg:bottom-0
- 
- "
+        class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform w-[260px] hidden fixed inset-y-0 start-0 z-[60] bg-white border-e border-gray-200 lg:block lg:translate-x-0 lg:end-auto lg:bottom-0"
       >
         <div class="px-8 pt-4">
           <a
@@ -301,7 +290,7 @@ const UserDashboard = () => {
             href="/"
             aria-label="Preline"
           >
-            <p className="text-3xl font-semibold">LittleLives</p>
+            <p className="text-3xl font-semibold">Ade</p>
           </a>
         </div>
 
@@ -310,10 +299,12 @@ const UserDashboard = () => {
           data-hs-accordion-always-open
         >
           <ul class="space-y-1.5">
-            <li onClick={() =>handleNavClick("")}>
+            <li onClick={() => handleNavClick("")}>
               <NavLink to="/user">
                 <a
-                  class={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${clicked == ""?"bg-gray-100": ""}`}
+                  class={`flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${
+                    clicked == "" ? "bg-gray-100" : ""
+                  }`}
                   href="#"
                 >
                   <svg
@@ -336,11 +327,17 @@ const UserDashboard = () => {
               </NavLink>
             </li>
 
-            <li class="hs-accordion" id="users-accordion" onClick={() => handleNavClick("surveyors")}>
+            <li
+              class="hs-accordion"
+              id="users-accordion"
+              onClick={() => handleNavClick("surveyors")}
+            >
               <NavLink to="/user/surveyors">
                 <button
                   type="button"
-                  class={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${clicked == "surveyors"?"bg-gray-100": ""}`}
+                  class={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${
+                    clicked == "surveyors" ? "bg-gray-100" : ""
+                  }`}
                 >
                   <svg
                     class="flex-shrink-0 size-4"
@@ -364,11 +361,17 @@ const UserDashboard = () => {
               </NavLink>
             </li>
 
-            <li class="hs-accordion" id="projects-accordion" onClick={()=> handleNavClick("analyze")}>
+            <li
+              class="hs-accordion"
+              id="projects-accordion"
+              onClick={() => handleNavClick("analyze")}
+            >
               <NavLink to="/user/analyze">
                 <button
                   type="button"
-                  class={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${clicked == "analyze"?"bg-gray-100": ""}`}
+                  class={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${
+                    clicked == "analyze" ? "bg-gray-100" : ""
+                  }`}
                 >
                   <svg
                     class="flex-shrink-0 mt-0.5 size-4"
@@ -398,10 +401,16 @@ const UserDashboard = () => {
                 </button>
               </NavLink>
             </li>
-            <li class="hs-accordion" id="account-accordion" onClick={() => handleNavClick("reports")}>
+            <li
+              class="hs-accordion"
+              id="account-accordion"
+              onClick={() => handleNavClick("reports")}
+            >
               <button
                 type="button"
-                class={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${clicked == "reports"?"bg-gray-200": ""}` }
+                class={`hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${
+                  clicked == "reports" ? "bg-gray-200" : ""
+                }`}
               >
                 <svg
                   class="flex-shrink-0 size-4"
@@ -422,12 +431,18 @@ const UserDashboard = () => {
               </button>
             </li>
 
-            <li onClick={() => {handleNavClick("settings")}}>
+            <li
+              onClick={() => {
+                handleNavClick("settings");
+              }}
+            >
               <a
-                class={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${clicked == "settings"?"bg-gray-100":""}`}
+                class={`w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 ${
+                  clicked == "settings" ? "bg-gray-100" : ""
+                }`}
                 href="#"
               >
-                <IoSettingsOutline className="h-4 w-4"/>
+                <IoSettingsOutline className="h-4 w-4" />
                 Settings
               </a>
             </li>

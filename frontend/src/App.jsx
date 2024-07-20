@@ -21,6 +21,7 @@ import AllowLocation from './components/mainPage/surveyor/AllowLocation'
 import UserDashboard from './components/UserDashboard/UserDashboard'
 import Signin from './components/AuthPages/Signin';
 import Signup from './components/AuthPages/Signup';
+import LandingPage from './components/LandingPage/LandingPage'
 
 
 function App() {
@@ -30,22 +31,14 @@ function App() {
 
       <Routes>
 
-        <Route path='/' element={<MainPage />} />
+        <Route path='/' element={<LandingPage/>}/>
         <Route path='/location' element={<AllowLocation />} />
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/signup' element={<Signup/>}/>
 
-        <Route path='/surveyor' >
-          <Route index element={<Register />} />
-          <Route path='register-child' element={<RegisterChild />} />
-          <Route path='register-mother' element={<RegisterMother />} />
-          <Route path='mother-list/:type' element={<MotherList />} />
-          <Route path='child-list' element={<ChildList />} />
-        </Route>
+        <Route path='/surveyor/*' element={<Register/>}/>
 
-        <Route path='postnatal/:id/:name' element={<Postnatal />} />
-        <Route path='antenatal/:id/:name' element={<Antenatal />} />
-        <Route path='infant-form/:id/:name' element={<InfantForm />} />
+        
         <Route path='/user/*' element={<UserDashboard/>}/>
 
          
