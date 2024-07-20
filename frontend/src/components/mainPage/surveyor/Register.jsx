@@ -363,6 +363,14 @@ const Register = () => {
         <h1 className="text-3xl font-bold mb-6 text-emerald-700">Register</h1>
         <nav className="space-y-4">
           <NavLink 
+            to="/surveyor/basic-info" 
+            className={({ isActive }) => 
+              `block text-emerald-500 hover:text-emerald-700 ${isActive ? 'font-bold' : ''}`
+            }
+          >
+            Register
+          </NavLink>
+          <NavLink 
             to="/surveyor/register-child" 
             className={({ isActive }) => 
               `block text-emerald-500 hover:text-emerald-700 ${isActive ? 'font-bold' : ''}`

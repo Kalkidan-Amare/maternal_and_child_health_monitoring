@@ -7,6 +7,7 @@ import ChildList from "./ChildList";
 import Postnatal from "./Postnatal";
 import Antenatal from "./Antenatal";
 import InfantForm from "./InfantForm";
+import BasicInfoForm from "./BasicInfoForm";
 
 const SurveyRouting = () => {
   return (
@@ -19,6 +20,7 @@ const SurveyRouting = () => {
         <Route path="/postnatal/:id/:name" element={<Postnatal />} />
         <Route path="/antenatal/:id/:name" element={<Antenatal />} />
         <Route path="/infant-form/:id/:name" element={<InfantForm />} />
+        <Route path='/basic-info' element={<BasicInfoForm/>}/>
       </Routes>
     </div>
   );
