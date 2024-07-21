@@ -28,8 +28,8 @@ class RegisterAdmin(viewsets.ModelViewSet):
 class RegisterSurveyer(viewsets.ModelViewSet):
     serializer_class = SurveyerSerializer
     queryset = SurveyorProfile.objects.all()
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

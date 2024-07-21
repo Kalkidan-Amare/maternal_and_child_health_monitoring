@@ -4,6 +4,7 @@ from .models import AdminProfile, SurveyorProfile, User
 
 
 class AdminSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(source='user.id', read_only=True)
     name = serializers.CharField(source='user.name')
     username = serializers.CharField(source='user.username')
     email = serializers.EmailField(source='user.email')
@@ -13,7 +14,7 @@ class AdminSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = AdminProfile
-        fields = ['name', 'username', 'email', 'phone_number', 'country', 'password', 'confirm_password']
+        fields = ['id','name', 'username', 'email', 'phone_number', 'country', 'password', 'confirm_password']
         extra_kwargs = {
             'password': {'write_only': True},
         }
@@ -47,7 +48,7 @@ class AdminSerializer(serializers.ModelSerializer):
             return False
         if not re.search(r'[0-9]', password):
             return False
-        if not re.search(r'[@$!%*?&]', password):
+        if not re.search(r'[@$!%*?&#]', password):
             return False
         return True
 
@@ -77,6 +78,7 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(max_length = 100)
 
 class SurveyerSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(source='user.id', read_only=True)
     name = serializers.CharField(source='user.name')
     username = serializers.CharField(source='user.username')
     email = serializers.EmailField(source='user.email')
@@ -86,7 +88,7 @@ class SurveyerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SurveyorProfile
-        fields = ['name', 'username', 'email', 'phone_number', 'password', 'confirm_password']
+        fields = ['id', 'name', 'username', 'email', 'phone_number', 'password', 'confirm_password']
     
     def validate(self, data):
         user_data = data.get('user')

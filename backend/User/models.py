@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 class User(AbstractUser):
     name = models.CharField(max_length=100, null=False, blank=False)
     email = models.EmailField(unique=True, null=False, blank=False)
-    phone_number = models.IntegerField(null=True, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     # Added related_name attributes to avoid clashes with thwe builtin AbstractUser class
