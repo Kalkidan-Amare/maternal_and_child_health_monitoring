@@ -6,49 +6,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const BasicInfoForm = () => {
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const mutation = useMutation(
-    (newComplaint) => postData("basicinfos/basic_information/", newComplaint),
-    {
-      onSuccess: (data) => {
-        console.log("Form submission successful", data);
-        navigate(`/surveyor/basic-info-submitted/${data.data.id}`)
-        
-      },
-      onError: (error) => {
-        console.error("Form submission failed", error);
-        setError(error);
-        
-      },
-    }
-  );
-
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    setError(null); 
-    const modifiedData = {
-      ...data,
-        country: data.country,
-        region: data.region,
-        zone: data.zone,
-        woreda: data.woreda,
-        kebele: data.kebele,
-        nearest_health_facility: data.nearest_health_facility,
-        house_number: data.house_number,
-        head_of_household_name: data.head_of_household_name,
-        head_of_household_phone_number: data.head_of_household_phone_number,
-        surveyor: "1",
-        location: data.location,
-    };
-    mutation.mutate(modifiedData);
-    console.log("form submitted", modifiedData);
-  };
 
   return (
-    <FormWrapper title="Basic Information">
-      {(location, styles) => (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <FormWrapper
+      title="Basic Information"
+      redirect='surveyor/basic-info-submitted/'
+      action='basicinfos/basic_information/'>
+      {(location, register, styles) => (
+        <>
           <div>
             <label htmlFor="country" className={styles.labelClass}>
               Country
@@ -206,13 +171,7 @@ const BasicInfoForm = () => {
               className={styles.submitClass}
             />
           </div>
-
-          {error && (
-            <div className="error-message">
-              Submission failed: {error.message}
-            </div>
-          )}
-        </form>
+        </>
       )}
     </FormWrapper>
   );
