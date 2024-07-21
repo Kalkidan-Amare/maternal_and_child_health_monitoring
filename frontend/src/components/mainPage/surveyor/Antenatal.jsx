@@ -1,46 +1,11 @@
-import { useForm } from "react-hook-form";
 import FormWrapper from "./ui/FormWrapper";
-import { useMutation } from "react-query";
-import { postData } from "../../hooks/useDjango";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+
 
 const Antenatal = () => {
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
     const {id, name} = useParams();
-    const mutation = useMutation(
-        (newComplaint) => postData('mothers/antenatal_follow_up/', newComplaint),
-        {
-            onSuccess: (data) => {
-                console.log('Form submission successful', data);
-                navigate("/surveyor");
-            },
-            onError: (error) => {
-                console.error('Form submission failed', error);
-                setError(error);
-                // Add any action you want to perform on failure here
-            },
-        }
-    );
-
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        setError(null); // Reset error state before new submission
-        const modifiedData = {
-            ...data,
-            mother_information: id,
-            surveyor: 1,
-        };
-        mutation.mutate(modifiedData);
-        console.log('form submitted', modifiedData);
-    };
-
-
-
     return (
-        <FormWrapper title="Antenatal Follow up Form">
-            {(location, styles) => (
+        <FormWrapper title="Antenatal Follow up Form" action='mothers/antenatal_follow_up/' redirect='/surveyor'>
+            {(location, register, styles) => (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <label  htmlFor="antenatal_pills" className={styles.labelClass}>Antenatal Pills</label>
@@ -106,7 +71,6 @@ const Antenatal = () => {
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
 
-                    {error && <div className="error-message">Submission failed: {error.message}</div>}
                 </form>
             )}
         </FormWrapper>

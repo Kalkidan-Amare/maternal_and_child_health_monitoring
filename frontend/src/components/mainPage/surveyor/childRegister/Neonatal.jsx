@@ -2,15 +2,11 @@ import { useForm } from "react-hook-form"
 import FormWrapper from "../ui/FormWrapper"
 
 const Neonatal = () => {
-    const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => {
-        console.log('form submitted', data)
-    }
     return (
-        <FormWrapper title='Neonatal Health Form'>
-            {(location, styles) => (
+        <FormWrapper title='Neonatal Health Form' action=''>
+            {(location, register, styles) => (
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <>
                     <div>
                         <label  htmlFor="apgar-score" className={styles.labelClass}>Apgar Score</label>
                         <input type="number" id="apgar-score" name="apgar-score" step="0.1" required className={styles.inputClass} {...register('apgar_score')} />
@@ -39,7 +35,7 @@ const Neonatal = () => {
                     <div>
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
-                </form>)}
+                </>)}
         </FormWrapper>
     )
 }

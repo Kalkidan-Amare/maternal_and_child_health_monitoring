@@ -37,7 +37,7 @@ const Postnatal = () => {
     };
 
     return (
-        <FormWrapper title="Postnatal Follow up Form">
+        <FormWrapper title="Postnatal Follow up Form" action='mothers/postnatal_follow_up/' redirect='/surveyor'>
             {(location, styles) => (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
@@ -91,7 +91,6 @@ const Postnatal = () => {
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
 
-                    {error && <div className="error-message">Submission failed: {error.message}</div>}
                 </form>
             )}
         </FormWrapper>

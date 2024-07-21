@@ -2,15 +2,11 @@ import { useForm } from "react-hook-form"
 import FormWrapper from "../ui/FormWrapper"
 
 const Obstetric = () => {
-    const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => {
-        console.log('form submitted', data)
-    }
     return (
         <FormWrapper title='Obstetric History Form'>
-            {(location, styles) => (
+            {(location, register,  styles) => (
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <>
                     <div>
                         <label  htmlFor="previous-pregnancies" className={styles.labelClass}>Previous Pregnancies</label>
                         <input type="number" id="previous-pregnancies" name="previous-pregnancies" required className={styles.inputClass} {...register('previous_pregnancies')} />
@@ -48,7 +44,7 @@ const Obstetric = () => {
                     <div>
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
-                </form>)}
+                </>)}
         </FormWrapper>
 
     )

@@ -2,15 +2,11 @@ import { useForm } from "react-hook-form"
 import FormWrapper from "../ui/FormWrapper"
 
 const LaborDelivery = () => {
-    const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => {
-        console.log('form submitted', data)
-    }
     return (
         <FormWrapper title='Labor Delivery'>
-            {(location, styles) => (
+            {(location, register, styles) => (
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <>
                     <div>
                         <label  htmlFor="delivery-date" className={styles.labelClass}>Delivery Date</label>
                         <input type="date" id="delivery-date" name="delivery-date" required className={styles.inputClass} {...register('delivery_date')} />
@@ -56,7 +52,7 @@ const LaborDelivery = () => {
                     <div>
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
-                </form>)}
+                </>)}
         </FormWrapper>
     )
 }
