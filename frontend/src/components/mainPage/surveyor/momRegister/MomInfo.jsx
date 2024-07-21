@@ -1,9 +1,4 @@
-import { useForm } from "react-hook-form";
 import FormWrapper from "../ui/FormWrapper";
-import { useMutation } from "react-query";
-import { postData } from "../../../hooks/useDjango";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const MomInfo = ({id}) => {
 
@@ -12,6 +7,7 @@ const MomInfo = ({id}) => {
         title="Mother's Information Form"
         redirect="surveyor/basic-info-submitted/"
         action='mothers/mother_information/'
+        id={id} portal={true}
         >
             {(location, register, styles) => (
                 <>

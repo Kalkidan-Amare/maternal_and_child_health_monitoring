@@ -4,7 +4,7 @@ import FormWrapper from "../ui/FormWrapper"
 const ChildInfoForm = ({id}) => {
 
   return (
-    <FormWrapper title='Child Info Form' action='children/child_information/' redirect='surveyor/basic-info-submitted/'>
+    <FormWrapper title='Child Info Form' action='children/child_information/' redirect='surveyor/basic-info-submitted/' id={id} portal={true}>
       {(location, register, styles) => (
         <>
           <div>

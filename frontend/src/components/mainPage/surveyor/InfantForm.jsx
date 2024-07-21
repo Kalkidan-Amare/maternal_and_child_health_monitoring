@@ -8,7 +8,7 @@ const InfantForm = () => {
 
     return (
         <FormWrapper title="Child Follow up Form" action='children/child_follow_up/' redirect='surveyor/child-list'>
-            {(location, styles) => (
+            {(location, register, styles) => (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <label  htmlFor="weight" className={styles.labelClass}>Weight (kg)</label>

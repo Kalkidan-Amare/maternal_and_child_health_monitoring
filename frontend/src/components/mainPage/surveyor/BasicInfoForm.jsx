@@ -1,9 +1,4 @@
-import { useForm } from "react-hook-form";
 import FormWrapper from "./ui/FormWrapper";
-import { useMutation } from "react-query";
-import { postData } from "../../hooks/useDjango";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const BasicInfoForm = () => {
 

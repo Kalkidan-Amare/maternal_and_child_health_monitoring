@@ -51,23 +51,7 @@ const AnalizeWithAI = () => {
             </p>
           </div>
 
-          <div className="mt-10 max-w-2xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative">
-              <input
-                type="text"
-                className="p-4 block w-full border-gray-200 rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                placeholder="Ask me anything..."
-              />
-              <div className="absolute top-1/2 end-2 -translate-y-1/2">
-                <button
-                  type="button"
-                  className="size-10 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-500 hover:text-gray-800 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  <FaCircleArrowUp className="w-8 h-8" />
-                </button>
-              </div>
-            </div>
-          </div>
+
           <ul className="mt-16 space-y-5">
             <li className="flex gap-x-2 sm:gap-x-4">
               <svg

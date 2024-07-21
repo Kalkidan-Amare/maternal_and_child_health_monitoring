@@ -6,40 +6,12 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Postnatal = () => {
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
     const {id, name} = useParams();
-    const mutation = useMutation(
-        (newComplaint) => postData('mothers/postnatal_follow_up/', newComplaint),
-        {
-            onSuccess: (data) => {
-                console.log('Form submission successful', data);
-                navigate("/surveyor")
-            },
-            onError: (error) => {
-                console.error('Form submission failed', error);
-                setError(error);
-                // Add any action you want to perform on failure here
-            },
-        }
-    );
-
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        setError(null); // Reset error state before new submission
-        const modifiedData = {
-            ...data,
-            mother_information: id,
-            surveyor: 1,
-        };
-        mutation.mutate(modifiedData);
-        console.log('form submitted', modifiedData);
-    };
 
     return (
         <FormWrapper title="Postnatal Follow up Form" action='mothers/postnatal_follow_up/' redirect='/surveyor'>
-            {(location, styles) => (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {(location, register, styles) => (
+                <>
                     <div>
                         <label  htmlFor="blood_pressure_systolic" className={styles.labelClass}>Blood Pressure Systolic</label>
                         <input type="number" id="blood_pressure_systolic" name="blood_pressure_systolic" required className={styles.inputClass}
@@ -91,7 +63,7 @@ const Postnatal = () => {
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
 
-                </form>
+                </>
             )}
         </FormWrapper>
     );
