@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import SurveyorProfile
 from basicinfos.models import BasicInformation
 
 class MotherInformation(models.Model):
@@ -10,7 +11,7 @@ class MotherInformation(models.Model):
     antenatal_care_received_previously = models.BooleanField()
     details_of_previous_antenatal_care = models.TextField(blank=True, null=True)
     location = models.TextField() 
-    surveyor = models.TextField() 
+    surveyor = models.ForeignKey(SurveyorProfile, on_delete=models.SET_NULL, related_name='mother_information', null=True, blank=True) 
     submission_date = models.DateField(auto_now_add=True)
 
 class AntenatalFollowUp(models.Model):
@@ -25,7 +26,7 @@ class AntenatalFollowUp(models.Model):
     blood_pressure_diastolic = models.PositiveIntegerField(blank=True, null=True)
     syphilis_screening = models.BooleanField()
     location = models.TextField() 
-    surveyor = models.TextField() 
+    surveyor = models.ForeignKey(SurveyorProfile, on_delete=models.SET_NULL, related_name='antenatal_follow_up', null=True, blank=True) 
     submission_date = models.DateField(auto_now_add=True)
 
 class PostnatalFollowUp(models.Model):
@@ -38,5 +39,5 @@ class PostnatalFollowUp(models.Model):
     infections = models.BooleanField()
     breastfeeding_issues = models.BooleanField()
     location = models.TextField() 
-    surveyor = models.TextField() 
+    surveyor = models.ForeignKey(SurveyorProfile, on_delete=models.SET_NULL, related_name='postnatal_follow_up', null=True, blank=True) 
     submission_date = models.DateField(auto_now_add=True)

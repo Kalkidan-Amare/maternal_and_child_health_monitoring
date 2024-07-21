@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import SurveyorProfile
 from basicinfos.models import BasicInformation
 
 class ChildInformation(models.Model):
@@ -10,7 +11,7 @@ class ChildInformation(models.Model):
     health_card_verified = models.BooleanField(default=False)
     date_of_birth = models.DateField()
     location = models.TextField()  
-    surveyor = models.TextField()  
+    surveyor = models.ForeignKey(SurveyorProfile, on_delete=models.SET_NULL, related_name='child_information', null=True, blank=True)  
     submission_date = models.DateField(auto_now_add=True)
 
 class ChildFollowUp(models.Model):
@@ -27,5 +28,5 @@ class ChildFollowUp(models.Model):
     measles = models.BooleanField()
     trachoma_screening = models.BooleanField()
     location = models.TextField()  
-    surveyor = models.TextField()  
+    surveyor = models.ForeignKey(SurveyorProfile, on_delete=models.SET_NULL, related_name='child_follow_up', null=True, blank=True)  
     submission_date = models.DateField(auto_now_add=True)

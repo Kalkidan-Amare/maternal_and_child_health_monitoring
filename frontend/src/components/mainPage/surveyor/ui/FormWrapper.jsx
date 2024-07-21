@@ -1,22 +1,37 @@
+import { useMutation } from 'react-query';
 import useGeolocation from '../hooks/useGeolocation';
 import * as styles from '../ui/repeatedClass'
+import { postData } from '../../../hooks/useDjango';
+import { useForm } from 'react-hook-form';
 const FormWrapper = (props) => {
     const { location, error } = useGeolocation();
 
-    if (error) {
-        return <h1>Location error: {error}</h1>;
-    }
-    if (location.lat === null || location.lon === null) {
-        return <h1 className='flex justify-center'><img src='/images/Circle Loader (1).gif'/></h1>;
-    }
+    const mutation = useMutation((newComplaint) => postData(props.action, newComplaint), {
+        onSuccess: () => {
+            console.log('done')
+        },
+    });
 
+    const { register, handleSubmit } = useForm()
+    const onSubmit = (data) => {
+        mutation.mutate({ ...data, surveyor: 1 })
+        console.log('form submitted', data)
+    }
     return (
-        <div className="bg-gray-100 flex items-center justify-center min-h-screen">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md md:max-w-full md:px-32">
-                <h1 className="text-2xl font-bold mb-6 text-center text-emerald-700">{props.title}</h1>
-                {props.children(JSON.stringify(location), styles)}
-            </div>
-        </div>
+        <>
+            {error && <h1>Location error: {error}</h1>}
+            {!error && location.lat === null && <h1>Loading location...</h1>}
+            {!error && location.lat !== null && (
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
+                    <div className="bg-gray-100 flex items-center justify-center min-h-screen">
+                        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+                            <h1 className="text-2xl font-bold mb-6 text-center text-emerald-700">{props.title}</h1>
+                            {props.children(JSON.stringify(location), register, styles)}
+                        </div>
+                    </div>
+                </form>
+            )}
+        </>
     )
 }
 export default FormWrapper
