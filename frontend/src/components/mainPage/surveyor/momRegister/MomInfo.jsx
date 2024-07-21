@@ -6,41 +6,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MomInfo = ({id}) => {
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
-    const mutation = useMutation(
-        (newComplaint) => postData('mothers/mother_information/', newComplaint),
-        {
-            onSuccess: (data) => {
-                console.log('Form submission successful', data);
-                navigate(`/surveyor/basic-info-submitted/${id}`)
-
-                // Add any action you want to perform on success here
-            },
-            onError: (error) => {
-                console.error('Form submission failed', error);
-                setError(error);
-                // Add any action you want to perform on failure here
-            },
-        }
-    );
-
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        setError(null); // Reset error state before new submission
-        const modifiedData = {
-            ...data,
-            basic_information: id,
-            surveyor: 1,
-        };
-        mutation.mutate(modifiedData);
-        console.log('form submitted', modifiedData);
-    };
 
     return (
-        <FormWrapper title="Mother's Information Form">
-            {(location, styles) => (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <FormWrapper 
+        title="Mother's Information Form"
+        redirect="surveyor/basic-info-submitted/"
+        action='mothers/mother_information/'
+        >
+            {(location, register, styles) => (
+                <>
                     <div>
                         <label htmlFor="name" className={styles.labelClass}>Name</label>
                         <input type="text" id="name" name="name" required className={styles.inputClass}
@@ -86,13 +60,16 @@ const MomInfo = ({id}) => {
                         <input type="text" id="location" name="location" readOnly required defaultValue={location} className={styles.inputClass}
                             {...register('location')} />
                     </div>
+                    <div>
+                        <input type="hidden" id="basic_information" name="basic_information" readOnly  required defaultValue={id} className={styles.inputClass}
+                            {...register('basic_information')} />
+                    </div>
 
                     <div>
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
 
-                    {error && <div className="error-message">Submission failed: {error.message}</div>}
-                </form>
+                </>
             )}
         </FormWrapper>
     );
