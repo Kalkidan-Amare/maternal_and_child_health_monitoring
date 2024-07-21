@@ -21,7 +21,7 @@ const SurveyRouting = () => {
         <Route path="/postnatal/:id/:name" element={<Postnatal />} />
         <Route path="/antenatal/:id/:name" element={<Antenatal />} />
         <Route path="/infant-form/:id/:name" element={<InfantForm />} />
-        <Route path='/basic-info' element={<BasicInfoForm/>}/>
+        <Route path='/' element={<BasicInfoForm/>}/>
         <Route path="/basic-info-submitted/:id" element={<BasicInfoSubmitted/>}/>
       </Routes>
     </div>

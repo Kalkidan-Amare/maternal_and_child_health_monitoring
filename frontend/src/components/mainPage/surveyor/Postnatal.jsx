@@ -3,15 +3,18 @@ import FormWrapper from "./ui/FormWrapper";
 import { useMutation } from "react-query";
 import { postData } from "../../hooks/useDjango";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Postnatal = () => {
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    const {id, name} = useParams();
     const mutation = useMutation(
         (newComplaint) => postData('mothers/postnatal_follow_up/', newComplaint),
         {
             onSuccess: (data) => {
                 console.log('Form submission successful', data);
-                // Add any action you want to perform on success here
+                navigate("/surveyor")
             },
             onError: (error) => {
                 console.error('Form submission failed', error);
@@ -26,7 +29,7 @@ const Postnatal = () => {
         setError(null); // Reset error state before new submission
         const modifiedData = {
             ...data,
-            mother_information: 1,
+            mother_information: id,
             surveyor: 1,
         };
         mutation.mutate(modifiedData);
@@ -62,19 +65,19 @@ const Postnatal = () => {
 
                     <div>
                         <label htmlFor="blood_loss" className={styles.labelClass}>Blood Loss</label>
-                        <input type="checkbox" id="blood_loss" name="blood_loss" className={styles.inputClass}
+                        <input type="checkbox" id="blood_loss" name="blood_loss" className={styles.checkinputClass}
                             {...register('blood_loss')} />
                     </div>
 
                     <div>
                         <label htmlFor="infections" className={styles.labelClass}>Infections</label>
-                        <input type="checkbox" id="infections" name="infections" className={styles.inputClass}
+                        <input type="checkbox" id="infections" name="infections" className={styles.checkinputClass}
                             {...register('infections')} />
                     </div>
 
                     <div>
                         <label htmlFor="breastfeeding_issues" className={styles.labelClass}>Breastfeeding Issues</label>
-                        <input type="checkbox" id="breastfeeding_issues" name="breastfeeding_issues" className={styles.inputClass}
+                        <input type="checkbox" id="breastfeeding_issues" name="breastfeeding_issues" className={styles.checkinputClass}
                             {...register('breastfeeding_issues')} />
                     </div>
 

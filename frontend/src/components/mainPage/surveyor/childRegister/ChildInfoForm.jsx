@@ -1,23 +1,53 @@
-import FormWrapper from "../ui/FormWrapper"
+import { useForm } from "react-hook-form";
+import FormWrapper from "../ui/FormWrapper";
+import { useMutation } from "react-query";
+import { postData } from "../../../hooks/useDjango";
+import { useNavigate } from "react-router-dom";
 
+const ChildInfoForm = ({id}) => {
+    const navigate = useNavigate();
+  const mutation = useMutation(
+    (newComplaint) => postData("children/child_information/", newComplaint),
+    {
+      onSuccess: (data) => {
+        // Invalidate and refetch
+        console.log("done");
+        navigate(`/surveyor/basic-info-submitted/${id}`)
+      },
+    }
+  );
 
-const ChildInfoForm = () => {
-
-    return (
-        <FormWrapper title='Child Info Form' action='api/children/children/'>
-            {(location, register, styles)=>(
-                <>
-                    <div>
-                        <label htmlFor="name" className={styles.labelClass}>Name</label>
-                        <input type="text" id="name" name="name" required className={styles.inputClass} 
-                        {...register('name')}/>
-                    </div>
-
-                    <div>
-                        <label htmlFor="dob" className={styles.labelClass}>Date of Birth</label>
-                        <input type="date" id="dob" name="dob" required className={styles.inputClass} 
-                        {...register('date_of_birth')}/>
-                    </div>
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    const modifiedData = {
+        ...data,
+        sex: data.gender,
+        surveyor: 1,
+        vaccination_status: data.vaccination_status || false,
+        health_card_verification: data.health_card_verification,
+        basic_information: 1,
+    };
+    delete modifiedData.gender;
+    mutation.mutate(modifiedData);
+    console.log('form submitted', modifiedData);
+};
+  return (
+    <FormWrapper title="Child Info Form" action='api/children/children'>
+      {(location, register, styles) => (
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div>
+            <label htmlFor="name" className={styles.labelClass}>
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              className={styles.inputClass}
+              {...register("name")}
+            />
+          </div>
 
                     <div>
                         <label htmlFor="birth-weight" className={styles.labelClass}>Birth Weight (kg)</label>
@@ -51,11 +81,46 @@ const ChildInfoForm = () => {
                         {...register('location')} />
                     </div>
 
-                    <div>
-                        <input type="submit" value="Submit" className={styles.submitClass} />
-                    </div>
-                    </>)}
-        </FormWrapper>
-    )
-}
-export default ChildInfoForm
+          <div>
+            <label htmlFor="location" className={styles.labelClass}>
+              Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              readOnly
+              required
+              defaultValue={location}
+              className={styles.inputClass}
+              {...register("location")}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="vaccination-status" className={styles.labelClass}>
+              Vaccination Status
+            </label>
+            <input
+              type="text"
+              id="vaccination-status"
+              name="vaccination_status"
+              className={styles.inputClass}
+              required
+              {...register("vaccination_status")}
+            />
+          </div>
+
+          <div>
+            <input
+              type="submit"
+              value="Submit"
+              className={styles.submitClass}
+            />
+          </div>
+        </form>
+      )}
+    </FormWrapper>
+  );
+};
+export default ChildInfoForm;

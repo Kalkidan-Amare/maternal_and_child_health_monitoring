@@ -30,7 +30,7 @@ const MomInfo = ({id}) => {
         setError(null); // Reset error state before new submission
         const modifiedData = {
             ...data,
-            basic_information: 1,
+            basic_information: id,
             surveyor: 1,
         };
         mutation.mutate(modifiedData);
@@ -72,7 +72,7 @@ const MomInfo = ({id}) => {
                     <div>
                         <label htmlFor="antenatal_care_received_previously" className={styles.labelClass}>Antenatal Care Received Previously</label>
                         <input type="checkbox" id="antenatal_care_received_previously" name="antenatal_care_received_previously"
-                            className={styles.inputClass} {...register('antenatal_care_received_previously')} />
+                            className={styles.checkinputClass} {...register('antenatal_care_received_previously')} />
                     </div>
 
                     <div>

@@ -3,15 +3,18 @@ import FormWrapper from "./ui/FormWrapper";
 import { useMutation } from "react-query";
 import { postData } from "../../hooks/useDjango";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Antenatal = () => {
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    const {id, name} = useParams();
     const mutation = useMutation(
         (newComplaint) => postData('mothers/antenatal_follow_up/', newComplaint),
         {
             onSuccess: (data) => {
                 console.log('Form submission successful', data);
-                // Add any action you want to perform on success here
+                navigate("/surveyor");
             },
             onError: (error) => {
                 console.error('Form submission failed', error);
@@ -26,12 +29,14 @@ const Antenatal = () => {
         setError(null); // Reset error state before new submission
         const modifiedData = {
             ...data,
-            mother_information: 1,
+            mother_information: id,
             surveyor: 1,
         };
         mutation.mutate(modifiedData);
         console.log('form submitted', modifiedData);
     };
+
+
 
     return (
         <FormWrapper title="Antenatal Follow up Form">
@@ -39,25 +44,25 @@ const Antenatal = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                         <label htmlFor="antenatal_pills" className={styles.labelClass}>Antenatal Pills</label>
-                        <input type="checkbox" id="antenatal_pills" name="antenatal_pills" className={styles.inputClass}
+                        <input type="checkbox" id="antenatal_pills" name="antenatal_pills" className={styles.checkinputClass}
                             {...register('antenatal_pills')} />
                     </div>
 
                     <div>
                         <label htmlFor="tetanus_vaccinations" className={styles.labelClass}>Tetanus and Other Related Vaccinations</label>
-                        <input type="checkbox" id="tetanus_vaccinations" name="tetanus_vaccinations" className={styles.inputClass}
+                        <input type="checkbox" id="tetanus_vaccinations" name="tetanus_vaccinations" className={styles.checkinputClass}
                             {...register('tetanus_and_other_related_vaccinations')} />
                     </div>
 
                     <div>
                         <label htmlFor="iron_folic_acid" className={styles.labelClass}>Iron Folic Acid</label>
-                        <input type="checkbox" id="iron_folic_acid" name="iron_folic_acid" className={styles.inputClass}
+                        <input type="checkbox" id="iron_folic_acid" name="iron_folic_acid" className={styles.checkinputClass}
                             {...register('iron_folic_acid')} />
                     </div>
 
                     <div>
                         <label htmlFor="weight_gain" className={styles.labelClass}>Weight Gain</label>
-                        <input type="checkbox" id="weight_gain" name="weight" className={styles.inputClass}
+                        <input type="checkbox" id="weight_gain" name="weight" className={styles.checkinputClass}
                             {...register('weight')} />
                     </div>
 
@@ -69,7 +74,7 @@ const Antenatal = () => {
 
                     <div>
                         <label htmlFor="deworming" className={styles.labelClass}>Deworming</label>
-                        <input type="checkbox" id="deworming" name="deworming" className={styles.inputClass}
+                        <input type="checkbox" id="deworming" name="deworming" className={styles.checkinputClass}
                             {...register('deworming')} />
                     </div>
 
@@ -87,7 +92,7 @@ const Antenatal = () => {
 
                     <div>
                         <label htmlFor="syphilis_screening" className={styles.labelClass}>Syphilis Screening</label>
-                        <input type="checkbox" id="syphilis_screening" name="syphilis_screening" className={styles.inputClass}
+                        <input type="checkbox" id="syphilis_screening" name="syphilis_screening" className={styles.checkinputClass}
                             {...register('syphilis_screening')} />
                     </div>
 
