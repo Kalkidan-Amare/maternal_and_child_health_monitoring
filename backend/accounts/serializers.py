@@ -35,6 +35,7 @@ class UserSerializer(serializers.ModelSerializer):
         elif hasattr(instance, 'surveyorprofile'):
             representation['role'] = 'surveyor'
             representation['client'] = instance.surveyorprofile.client.id if instance.surveyorprofile.client else None
+            representation['surveyor_profile_id'] = instance.surveyorprofile.id
         elif hasattr(instance, 'clientprofile'):
             representation['role'] = 'client'
             representation['client'] = None
@@ -42,6 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
             representation['role'] = None
             representation['client'] = None
         return representation
+
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()

@@ -1,4 +1,3 @@
-import imp
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from accounts.models import AdminProfile, SurveyorProfile, ClientProfile
