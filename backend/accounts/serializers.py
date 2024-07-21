@@ -11,6 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'password', 'role', 'client')
 
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Email already exists")
+        return value
+
     def create(self, validated_data):
         role = validated_data.pop('role')
         client = validated_data.pop('client', None)
@@ -37,7 +42,6 @@ class UserSerializer(serializers.ModelSerializer):
             representation['role'] = None
             representation['client'] = None
         return representation
-
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
