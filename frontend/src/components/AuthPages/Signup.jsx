@@ -57,7 +57,7 @@ const Signup = () => {
             <form>
               <div className="grid gap-y-4">
                 <div>
-                  <label for="email" className="block text-sm mb-2">
+                  <label htmlFor="email" className="block text-sm mb-2">
                     Email address
                   </label>
                   <div className="relative">
@@ -92,7 +92,7 @@ const Signup = () => {
                 </div>
 
                 <div>
-                  <label for="password" className="block text-sm mb-2">
+                  <label htmlFor="password" className="block text-sm mb-2">
                     Password
                   </label>
                   <div className="relative">
@@ -126,7 +126,7 @@ const Signup = () => {
                 </div>
 
                 <div>
-                  <label for="confirm-password" className="block text-sm mb-2">
+                  <label htmlFor="confirm-password" className="block text-sm mb-2">
                     Confirm Password
                   </label>
                   <div className="relative">
@@ -169,7 +169,7 @@ const Signup = () => {
                     />
                   </div>
                   <div className="ms-3">
-                    <label for="remember-me" className="text-sm">
+                    <label htmlFor="remember-me" className="text-sm">
                       I accept the{" "}
                       <a
                         className="text-blue-600 decoration-2 hover:underline font-medium"

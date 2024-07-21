@@ -57,7 +57,7 @@ const Signin = () => {
             <form>
               <div className="grid gap-y-4">
                 <div>
-                  <label for="email" className="block text-sm mb-2">
+                  <label htmlFor="email" className="block text-sm mb-2">
                     Email address
                   </label>
                   <div className="relative">
@@ -93,7 +93,7 @@ const Signin = () => {
 
                 <div>
                   <div className="flex justify-between items-center">
-                    <label for="password" className="block text-sm mb-2">
+                    <label htmlFor="password" className="block text-sm mb-2">
                       Password
                     </label>
                     <a
@@ -143,7 +143,7 @@ const Signin = () => {
                     />
                   </div>
                   <div className="ms-3">
-                    <label for="remember-me" className="text-sm">
+                    <label htmlFor="remember-me" className="text-sm">
                       Remember me
                     </label>
                   </div>

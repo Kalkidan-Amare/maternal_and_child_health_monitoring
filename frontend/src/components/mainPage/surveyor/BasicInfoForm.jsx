@@ -15,7 +15,7 @@ const BasicInfoForm = () => {
       {(location, register, styles) => (
         <>
           <div>
-            <label htmlFor="country" className={styles.labelClass}>
+            <label  htmlFor="country" className={styles.labelClass}>
               Country
             </label>
             <input
@@ -29,7 +29,7 @@ const BasicInfoForm = () => {
           </div>
 
           <div>
-            <label htmlFor="region" className={styles.labelClass}>
+            <label  htmlFor="region" className={styles.labelClass}>
               Region
             </label>
             <input
@@ -43,7 +43,7 @@ const BasicInfoForm = () => {
           </div>
 
           <div>
-            <label htmlFor="zone" className={styles.labelClass}>
+            <label  htmlFor="zone" className={styles.labelClass}>
               Zone
             </label>
             <input
@@ -57,7 +57,7 @@ const BasicInfoForm = () => {
           </div>
 
           <div>
-            <label htmlFor="woreda" className={styles.labelClass}>
+            <label  htmlFor="woreda" className={styles.labelClass}>
               Woreda
             </label>
             <input
@@ -71,7 +71,7 @@ const BasicInfoForm = () => {
           </div>
 
           <div>
-            <label htmlFor="kebele" className={styles.labelClass}>
+            <label  htmlFor="kebele" className={styles.labelClass}>
               Kebele
             </label>
             <input
@@ -86,7 +86,7 @@ const BasicInfoForm = () => {
 
           <div>
             <label
-              htmlFor="nearest_health_facility"
+               htmlFor="nearest_health_facility"
               className={styles.labelClass}
             >
               Nearest Health Facility
@@ -102,7 +102,7 @@ const BasicInfoForm = () => {
           </div>
 
           <div>
-            <label htmlFor="house_number" className={styles.labelClass}>
+            <label  htmlFor="house_number" className={styles.labelClass}>
               House Number
             </label>
             <input
@@ -117,7 +117,7 @@ const BasicInfoForm = () => {
 
           <div>
             <label
-              htmlFor="head_of_household_name"
+               htmlFor="head_of_household_name"
               className={styles.labelClass}
             >
               Head of Household Name
@@ -134,7 +134,7 @@ const BasicInfoForm = () => {
 
           <div>
             <label
-              htmlFor="head_of_household_phone_number"
+               htmlFor="head_of_household_phone_number"
               className={styles.labelClass}
             >
               Head of Household Phone Number
@@ -149,7 +149,7 @@ const BasicInfoForm = () => {
             />
           </div>
           <div>
-            <label htmlFor="location" className={styles.labelClass}>
+            <label  htmlFor="location" className={styles.labelClass}>
               Location
             </label>
             <input

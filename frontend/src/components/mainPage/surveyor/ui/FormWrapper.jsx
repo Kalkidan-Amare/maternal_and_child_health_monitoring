@@ -39,6 +39,6 @@ const FormWrapper = (props) => {
 }
 export default FormWrapper
 // <div>
-//     <label htmlFor={htmlfor} className={styles.labelClass}>Visit Date</label>
+//     <label  htmlFor={htmlfor} className={styles.labelClass}>Visit Date</label>
 //     <input type={type} id={id} name={id} required={required} className={styles.inputClass} />
 // </div>
