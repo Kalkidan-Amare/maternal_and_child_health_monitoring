@@ -7,7 +7,7 @@ const MomInfo = ({id}) => {
         title="Mother's Information Form"
         redirect="surveyor/basic-info-submitted/"
         action='mothers/mother_information/'
-        id={id} portal={true}
+        portal={true}
         >
             {(location, register, styles) => (
                 <>

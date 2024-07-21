@@ -7,9 +7,9 @@ const InfantForm = () => {
     const {id, name} = useParams();
 
     return (
-        <FormWrapper title="Child Follow up Form" action='children/child_follow_up/' redirect='surveyor/child-list'>
+        <FormWrapper title="Child Follow up Form" action='children/child_follow_up/' redirect='surveyor/'>
             {(location, register, styles) => (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                < >
                     <div>
                         <label  htmlFor="weight" className={styles.labelClass}>Weight (kg)</label>
                         <input type="number" id="weight" name="weight" step="0.1" required className={styles.inputClass}
@@ -86,7 +86,7 @@ const InfantForm = () => {
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
 
-                </form>
+                </>
             )}
         </FormWrapper>
     );

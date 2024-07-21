@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 const ChatResponse=(props)=>{
     return (
         <>
@@ -46,7 +47,9 @@ const ChatResponse=(props)=>{
         <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 dark:bg-neutral-900 dark:border-neutral-700">
           <div className="space-y-1.5">
             <p className="mb-1.5 text-sm text-gray-800 dark:text-white">
+            <ReactMarkdown>
               {props.text}
+              </ReactMarkdown>
             </p>
           </div>
         </div>

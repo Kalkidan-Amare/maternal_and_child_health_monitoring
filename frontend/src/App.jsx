@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import MainPage from './components/mainPage/MainPage'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import RegisterChild from './components/mainPage/surveyor/RegisterChild'
 import RegisterMother from './components/mainPage/surveyor/RegisterMom'
 import Register from './components/mainPage/surveyor/Register'
@@ -22,14 +22,17 @@ import UserDashboard from './components/UserDashboard/UserDashboard'
 import Signin from './components/AuthPages/Signin';
 import Signup from './components/AuthPages/Signup';
 import LandingPage from './components/LandingPage/LandingPage'
+import { Button } from '@tremor/react'
 
 
 function App() {
+  const navigate = useNavigate();
   return (
     <>
         <QueryClientProvider client={queryClient}>
 
       <Routes>
+        <Route path='/done' element={<div style={{textAlign:'center', fontSize:'23px'}}>form submitted<br></br><Button onClick={()=>navigate(-1)}>go back</Button></div>}/>
 
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/location' element={<AllowLocation />} />

@@ -10,15 +10,21 @@ const FormWrapper = (props) => {
 
     const mutation = useMutation((newComplaint) => postData(props.action, newComplaint), {
         onSuccess: (data) => {
-            console.log('done')
-            const id=props.id?props.id:data.data.id
-            navigate(`/${props.redirect}${id}`)
+            if(props.portal==true){
+               return navigate(`/done`)
+            }
+            if(props.redirect=='/surveyor'){
+                return navigate(`/surveyor`)
+            }
+            
+            navigate(`/${props.redirect}${data.data.id}`)
         },
     });
 
     const { register, handleSubmit } = useForm()
     const onSubmit = (data) => {
         mutation.mutate({ ...data, surveyor: 1 })
+        console.log('form submitted', data)
     }
     return (
         <>

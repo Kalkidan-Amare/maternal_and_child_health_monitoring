@@ -1,12 +1,13 @@
+import { useParams } from "react-router-dom";
 import FormWrapper from "./ui/FormWrapper";
 
 
 const Antenatal = () => {
     const {id, name} = useParams();
     return (
-        <FormWrapper title="Antenatal Follow up Form" action='mothers/antenatal_follow_up/' redirect='/surveyor'>
+        <FormWrapper title="Antenatal Follow up Form" action='mothers/antenatal_follow_up/' redirect='/surveyor' notextra={false}>
             {(location, register, styles) => (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <>
                     <div>
                         <label  htmlFor="antenatal_pills" className={styles.labelClass}>Antenatal Pills</label>
                         <input type="checkbox" id="antenatal_pills" name="antenatal_pills" className={styles.checkinputClass}
@@ -71,7 +72,7 @@ const Antenatal = () => {
                         <input type="submit" value="Submit" className={styles.submitClass} />
                     </div>
 
-                </form>
+                </>
             )}
         </FormWrapper>
     );
