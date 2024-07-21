@@ -3,12 +3,15 @@ import useGeolocation from '../hooks/useGeolocation';
 import * as styles from '../ui/repeatedClass'
 import { postData } from '../../../hooks/useDjango';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 const FormWrapper = (props) => {
     const { location, error } = useGeolocation();
+    const navigate=useNavigate()
 
     const mutation = useMutation((newComplaint) => postData(props.action, newComplaint), {
-        onSuccess: () => {
+        onSuccess: (data) => {
             console.log('done')
+            navigate(`/${props.redirect}${data.data.id}`)
         },
     });
 

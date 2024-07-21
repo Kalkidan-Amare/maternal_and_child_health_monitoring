@@ -4,8 +4,8 @@ import { useMutation } from "react-query";
 import { postData } from "../../../hooks/useDjango";
 import { useNavigate } from "react-router-dom";
 
-const ChildInfoForm = ({id}) => {
-    const navigate = useNavigate();
+const ChildInfoForm = ({ id }) => {
+  const navigate = useNavigate();
   const mutation = useMutation(
     (newComplaint) => postData("children/child_information/", newComplaint),
     {
@@ -20,17 +20,17 @@ const ChildInfoForm = ({id}) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const modifiedData = {
-        ...data,
-        sex: data.gender,
-        surveyor: 1,
-        vaccination_status: data.vaccination_status || false,
-        health_card_verification: data.health_card_verification,
-        basic_information: 1,
+      ...data,
+      sex: data.gender,
+      surveyor: 1,
+      vaccination_status: data.vaccination_status || false,
+      health_card_verification: data.health_card_verification,
+      basic_information: 1,
     };
     delete modifiedData.gender;
     mutation.mutate(modifiedData);
     console.log('form submitted', modifiedData);
-};
+  };
   return (
     <FormWrapper title="Child Info Form" action='api/children/children'>
       {(location, register, styles) => (
@@ -49,37 +49,37 @@ const ChildInfoForm = ({id}) => {
             />
           </div>
 
-                    <div>
-                        <label htmlFor="birth-weight" className={styles.labelClass}>Birth Weight (kg)</label>
-                        <input type="number" id="birth-weight" name="birth-weight" step="0.1" required className={styles.inputClass} 
-                        {...register('birth_weight')}/>
-                    </div>
-                    <div>
-                        <label htmlFor="birth-length" className={styles.labelClass}>Birth length (cm)</label>
-                        <input type="number" id="birth-length" name="birth-length" step="0.1" required className={styles.inputClass} 
-                        {...register('birth_length')}/>
-                    </div>
+          <div>
+            <label htmlFor="birth-weight" className={styles.labelClass}>Birth Weight (kg)</label>
+            <input type="number" id="birth-weight" name="birth-weight" step="0.1" required className={styles.inputClass}
+              {...register('birth_weight')} />
+          </div>
+          <div>
+            <label htmlFor="birth-length" className={styles.labelClass}>Birth length (cm)</label>
+            <input type="number" id="birth-length" name="birth-length" step="0.1" required className={styles.inputClass}
+              {...register('birth_length')} />
+          </div>
 
-                    <div>
-                        <label htmlFor="mother" className={styles.labelClass}>Mother's Name</label>
-                        <input type="text" id="mother" name="mother" required className={styles.inputClass} 
-                        {...register('mother')}/>
-                    </div>
-                    
-                    <div>
-                        <label htmlFor="gender" className={styles.labelClass}>Gender</label>
-                        <select id="gender" name="gender" required className={styles.inputClass} {...register('gender')}>
-                            <option value="">Select...</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
+          <div>
+            <label htmlFor="mother" className={styles.labelClass}>Mother's Name</label>
+            <input type="text" id="mother" name="mother" required className={styles.inputClass}
+              {...register('mother')} />
+          </div>
 
-                    <div>
-                        <label htmlFor="location" className={styles.labelClass}>Location</label>
-                        <input type="text" id="location" name="location" readOnly required defaultValue={location} className={styles.inputClass}
-                        {...register('location')} />
-                    </div>
+          <div>
+            <label htmlFor="gender" className={styles.labelClass}>Gender</label>
+            <select id="gender" name="gender" required className={styles.inputClass} {...register('gender')}>
+              <option value="">Select...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="location" className={styles.labelClass}>Location</label>
+            <input type="text" id="location" name="location" readOnly required defaultValue={location} className={styles.inputClass}
+              {...register('location')} />
+          </div>
 
           <div>
             <label htmlFor="location" className={styles.labelClass}>
