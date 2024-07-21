@@ -7,7 +7,7 @@ const FormWrapper = (props) => {
         return <h1>Location error: {error}</h1>;
     }
     if (location.lat === null || location.lon === null) {
-        return <h1>Loading location...</h1>;
+        return <h1 className='flex justify-center'><img src='/images/Circle Loader (1).gif'/></h1>;
     }
 
     return (

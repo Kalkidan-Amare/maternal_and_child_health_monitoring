@@ -4,15 +4,15 @@ import { useMutation } from "react-query";
 import { postData } from "../../../hooks/useDjango";
 import { useNavigate } from "react-router-dom";
 
-const ChildInfoForm = ({id}) => {
-    const navigate = useNavigate();
+const ChildInfoForm = ({ id }) => {
+  const navigate = useNavigate();
   const mutation = useMutation(
     (newComplaint) => postData("children/child_information/", newComplaint),
     {
       onSuccess: (data) => {
         // Invalidate and refetch
         console.log("done");
-        navigate(`/surveyor/basic-info-submitted/${id}`)
+        navigate(`/surveyor/basic-info-submitted/${id}`);
       },
     }
   );
@@ -20,17 +20,16 @@ const ChildInfoForm = ({id}) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const modifiedData = {
-        ...data,
-        sex: data.gender,
-        surveyor: 1,
-        vaccination_status: data.vaccination_status || false,
-        health_card_verification: data.health_card_verification,
-        basic_information: 1,
+      ...data,
+      sex: data.gender,
+      surveyor: 1,
+      vaccination_status: data.vaccination_status,
+      health_card_verification: data.health_card_verification,
+      basic_information: id,
     };
-    delete modifiedData.gender;
     mutation.mutate(modifiedData);
-    console.log('form submitted', modifiedData);
-};
+    console.log("form submitted", modifiedData);
+  };
   return (
     <FormWrapper title="Child Info Form">
       {(location, styles) => (
@@ -135,10 +134,11 @@ const ChildInfoForm = ({id}) => {
               Vaccination Status
             </label>
             <input
-              type="checkbox"
+              type="text"
               id="vaccination-status"
               name="vaccination_status"
               className={styles.inputClass}
+              required
               {...register("vaccination_status")}
             />
           </div>
